@@ -73,6 +73,33 @@ class LinkedList{
         this.lenght--;
     }
 
+    find(value){
+        let count = 0;
+        let current = this.head;
+        while(current){
+            if(current.value == value){
+                return count;
+            }
+            current = current.next;
+            count++;
+        }
+        return null;
+    }
+
+
+
+    at(index){
+        let count = 0;
+        let current =  this .head;
+        while(current){
+            
+            if(count == index){
+                console.log(current)
+            }
+            count++;
+            current = current.next;
+        }
+    }
 
     containesValue(value){
         let current = this.head;
@@ -85,11 +112,47 @@ class LinkedList{
 
         console.log('false');
     }
+
+    changetoSting(){
+        let current = this.head;
+        let str = '';
+        while(current){
+             str += `->(${current.value})`;
+            current = current.next;
+        }
+        str += `->null`;
+        console.log(str);
+    }
+
+    insertAt(value,index){
+        let newNode = new Node();
+            newNode.value = value;
+        let count = 0;
+        let current = this.head;
+        while(current){
+            if(count == index){
+                current.next = newNode;
+                newNode.next = current.next.next;
+                while(current.next){
+                    current.next = current.next.next;
+                }
+            }
+            count++;
+            current = current.next
+        }
+    }
+
 }
 
 let myLinkedList = new LinkedList();
 myLinkedList.append(10);
-myLinkedList.containesValue(30)
+myLinkedList.append(30);
+myLinkedList.append(60);
+myLinkedList.append(120);
+myLinkedList.insertAt(100,2);
+myLinkedList.changetoSting();
+
+
 
 
 
