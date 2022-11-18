@@ -1,49 +1,96 @@
-// create a function that returns a new node object
 
-function createNode(value){
-    return{
-        value:value,
-        next:null,
-    };
-
+// create Node class to create a new node
+class Node{
+    constructor(value){
+        this.value = value;
+        this.next = null;
+    }
 }
 
-// create a function that returns  alinkedlist
 
-function linkedList(){
 
-    head=null
-    tail=null;
-    length=0;
-
-    const insert = (value)=>{
-        length++;
-        let newNode = createNode(value);
-
-        if(tail){
-            tail.next = newNode;
-            tail=newNode;
-            return newNode;
-        }
-        head = tail = newNode;
-        return newNode;
+// create A linked list
+class LinkedList{
+    constructor(){
+        this.head = null;
+        this.tail = null;
+        this.lenght = 0;
     }
 
-    const print =()=>{
-        let current = head;
-        while(current){
+    // append new node at the end of the linked list
+    append(value){
+        let newNode = new Node(value);
+
+        if(this.tail){
+            this.tail.next  = newNode;
+            this.tail = newNode;
+            this.lenght++;
+        }
+        else{
+            this.tail = this.head = newNode;
+            this.lenght++;
+        }
+       
+    }
+
+    // append new node at the beginning of the linked list
+    prepend(value){
+        let newNode = new Node(value);
+
+        if(this.head){
+           newNode.next = this.head;
+           this.head = newNode
+            this.lenght++;
+        }
+        else{
+            this.tail = this.head = newNode;
+            this.lenght++;
+        }
+    }
+
+    showLength(){
+        return this.lenght;
+    }
+
+    returnHead(){
+        return this.head;
+    }
+
+    returnTail(){
+        return this.tail;
+    }
+
+    printAll(){
+       let current = this.head;
+       while(current){
             console.log(current.value)
+            current = current.next
+       }
+    }
+
+    pop(){
+        this.tail = null;
+        this.lenght--;
+    }
+
+
+    containesValue(value){
+        let current = this.head;
+        while(current){
+            if(current.value == value){
+                console.log('true');
+            }
             current = current.next;
         }
-    }
 
-    return{
-      
-        insert,
-        print,
+        console.log('false');
     }
 }
 
-const my = linkedList()
-my.insert(7)
-my.print()
+let myLinkedList = new LinkedList();
+myLinkedList.append(10);
+myLinkedList.containesValue(30)
+
+
+
+
