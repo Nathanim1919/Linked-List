@@ -129,16 +129,12 @@ class LinkedList{
             newNode.value = value;
         let count = 0;
         let current = this.head;
+        
         while(current){
-            if(count == index){
+            if (count == index) {
+                newNode.next = current.next;
                 current.next = newNode;
-                newNode.next = current.next.next;
-                while(current.next){
-                    current.next = current.next.next;
-                }
             }
-            count++;
-            current = current.next
         }
     }
 
@@ -149,7 +145,7 @@ myLinkedList.append(10);
 myLinkedList.append(30);
 myLinkedList.append(60);
 myLinkedList.append(120);
-myLinkedList.insertAt(100,2);
+// myLinkedList.insertAt(100,2);
 myLinkedList.changetoSting();
 
 
